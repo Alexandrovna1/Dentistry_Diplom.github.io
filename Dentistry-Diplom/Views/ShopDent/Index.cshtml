@@ -1,0 +1,14 @@
+﻿@model Dentistry_Diplom.Data.ViewModels.ShopDentViewModel
+
+<div class="container">
+    @foreach(var el in Model.shopDent.shopDentItems)
+    {
+        <div class="alert alert-warning mt-3">
+            <b>Автомобиль:</b> @el.dentistry.name<br />
+            <b>Цена:</b> @el.dentistry.price.ToString("c");
+        </div>
+    }
+    <div class="mb-0"><p><b>Всего товаров на сумму:</b>@Model.Sum.ToString()</p></div>
+
+    <a class="btn btn-primary" asp-controller="Order" asp-action="Checkout">Оплатить</a>
+</div>

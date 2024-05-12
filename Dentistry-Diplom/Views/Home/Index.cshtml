@@ -1,0 +1,74 @@
+﻿@model Dentistry_Diplom.Data.Models.DentistryPagingModel
+
+<div id="carouselExampleIndicators" class="carousel slide">
+    <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="~/img/carousel-card1.png" class="d-block w-100" alt="...">
+        </div>
+        <div class="carousel-item">
+            <img src="~/img/carousel-card2.png" class="d-block w-100" alt="...">
+        </div>
+        <div class="carousel-item">
+            <img src="~/img/carousel-card3.png" class="d-block w-100" alt="...">
+        </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
+
+
+<div class="jumbotron mt-5">
+    <h3 class="display-4">Исключительно у нас есть такие приставки, о которых вы могли и не знать!</h3>
+    <p class="lead">
+        На каждого пользователя найдется свой выбор. Если человек знает чего он хочет, то обязательно найдет себе подходящий вариант
+    </p>
+    <hr class="my-4">
+    <p>
+</div>
+
+<h3 class="mb-5 mt-5 align-content-center">Дальше идет список консолей. Приятного ознакомления!</h3>
+
+    <div class="row">
+        <div class="col col-md-2">
+            @await Component.InvokeAsync("NavigationMenu")
+        </div>
+        <div class="col col-md-10">
+            <div page-model="@Model.PagingInfo" page-action=""
+                 page-classes-enabled="true"
+                 page-class="btn"
+                 page-class-normal="btn-default"
+                 page-class-selected="btn-primary"
+                 class="btn-group pull-right">
+            </div>
+            <div class="row mt-5 mb-2">
+                @{
+                foreach (var dentistryInfo in Model.Dentistrys)
+                    {
+                        <div class="col-lg-4">
+                        <img width="350" src="@dentistryInfo.img" alt="@dentistryInfo.name" />
+                        <h2>@dentistryInfo.name</h2>
+                        <p>@dentistryInfo.shortDesc</p>
+                            <div class="container d-flex">
+                            <p style="margin-right: 80px; margin-left:-10px; margin-top: 7px">Цена: @dentistryInfo.price</p>
+                            <a class="btn btn-primary" style="margin-bottom:25px" href="#" onclick="location.href = '@Url.Action("SingleDentistry", "Home", new { _id = dentistryInfo.id})'">
+                                    Подробнее
+                                </a>
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+        </div>
+
